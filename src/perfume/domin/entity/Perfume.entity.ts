@@ -38,7 +38,7 @@ export class Perfume {
   @Column({ nullable: false, default: '' })
   desc: string;
 
-  @Column({ type: 'enum', default: Gender.UNISEX })
+  @Column({ type: 'enum', enum: Gender, default: Gender.UNISEX })
   gender: Gender;
 
   @Column({ nullable: false, default: 0 })

@@ -1,7 +1,9 @@
+import { PerfumeReviewComment } from './PerfumeReviewComment.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -9,6 +11,9 @@ import {
 export class PerfumeReviewReply {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @ManyToOne(() => PerfumeReviewComment)
+  PerfumeReviewComment: PerfumeReviewComment;
 
   @Column({ nullable: false })
   perfumeReviewCommentId: number;
