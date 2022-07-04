@@ -1,9 +1,16 @@
 import { Perfume } from './Perfume.entity';
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { PerfumeReviewImg } from './PerfumeReviewImg.entity';
 
 @Entity()
 export class PerfumeReview {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ nullable: false, default: '' })
@@ -20,4 +27,7 @@ export class PerfumeReview {
 
   @ManyToOne(() => Perfume, { nullable: false })
   perfume: Perfume;
+
+  @OneToMany(() => PerfumeReviewImg, (img) => img.perfumeReview)
+  perfumeReviewImgs: PerfumeReviewImg[];
 }

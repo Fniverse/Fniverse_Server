@@ -1,27 +1,22 @@
-import { PerfumeReview } from './PerfumeReview.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
-export class PerfumeReviewComment {
+export class PerfumeReviewReply {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => PerfumeReview)
-  perfumeReview: PerfumeReview;
-
   @Column({ nullable: false })
-  perfumeReviewId: number;
+  perfumeReviewCommentId: number;
 
   @Column({ nullable: false })
   userId: number;
 
-  @Column({ nullable: false, default: '' })
+  @Column({ nullable: false })
   content: string;
 
   @CreateDateColumn()

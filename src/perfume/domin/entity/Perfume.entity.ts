@@ -5,7 +5,7 @@ import {
   JoinColumn,
   OneToMany,
   OneToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PerfumeImg } from './PerfumeImg.entity';
 
@@ -17,7 +17,7 @@ export enum Gender {
 
 @Entity()
 export class Perfume {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ nullable: false, default: '' })
