@@ -13,7 +13,7 @@ export class PerfumeReviewReply {
   id: number;
 
   @ManyToOne(() => PerfumeReviewComment)
-  PerfumeReviewComment: PerfumeReviewComment;
+  perfumeReviewComment: PerfumeReviewComment;
 
   @Column({ nullable: false })
   perfumeReviewCommentId: number;

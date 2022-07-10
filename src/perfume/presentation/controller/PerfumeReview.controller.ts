@@ -1,6 +1,8 @@
+import { UpdatePerfumeReviewDto } from 'src/perfume/presentation/dto/UpdatePerfumeReview.dto';
 import { PerfumeReviewService } from './../../application/service/perfumeReview.service';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreatePerfumeReviewDto } from '../dto/CreatePerfumeReview.dto';
+import { CreatePerfumeReviewCommentDto } from '../dto/CreatePerfumeReviewComment.dto';
 
 @Controller('/perfumeReview')
 export class PerfumeReviewController {
@@ -11,9 +13,19 @@ export class PerfumeReviewController {
     return this.service.createReview(input);
   }
 
+  @Post()
+  createPerfumeReviewComment(@Body() input: CreatePerfumeReviewCommentDto) {
+    return this.service.createReviewComment(input);
+  }
+
   @Get()
   getPerfumeReviews() {
     return this.service.getReviews();
+  }
+
+  @Patch()
+  async updatePerfumeReview(@Body() input: UpdatePerfumeReviewDto) {
+    return this.service.updateReview(input);
   }
 
   @Get('/:id')

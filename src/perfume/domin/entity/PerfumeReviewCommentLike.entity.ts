@@ -14,7 +14,4 @@ export class PerfumeReviewCommentLike {
 
   @Column({ nullable: false })
   userId: number;
-
-  @Column({ nullable: false, default: 0 })
-  count: number;
 }

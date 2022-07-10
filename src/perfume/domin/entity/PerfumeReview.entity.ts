@@ -1,6 +1,7 @@
 import { Perfume } from './Perfume.entity';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   ManyToOne,
   OneToMany,
@@ -30,4 +31,12 @@ export class PerfumeReview {
 
   @OneToMany(() => PerfumeReviewImg, (img) => img.perfumeReview)
   perfumeReviewImgs: PerfumeReviewImg[];
+
+  @CreateDateColumn()
+  dt: Date;
+
+  public changeInfo(input: { content: string; title: string }) {
+    this.content = input.content;
+    this.title = input.title;
+  }
 }

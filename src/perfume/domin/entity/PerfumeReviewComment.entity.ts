@@ -26,4 +26,8 @@ export class PerfumeReviewComment {
 
   @CreateDateColumn()
   dt: Date;
+
+  changeInfo(input: { content: string }) {
+    this.content = input.content;
+  }
 }
