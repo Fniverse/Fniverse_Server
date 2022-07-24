@@ -21,6 +21,9 @@ export class FeedComment {
   @Column({ nullable: false, default: '' })
   content: string;
 
+  @Column({ nullable: false })
+  userId: number;
+
   @CreateDateColumn()
   dt: Date;
 }
