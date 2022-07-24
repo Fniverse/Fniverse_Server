@@ -6,9 +6,10 @@ import { FeedReportRepository } from './domain/repository/FeedReport.repository'
 import { FeedCommentService } from './application/service/feedComment.service';
 import { FeedCommentRepository } from './domain/repository/FeedComment.repository';
 import { UploadModule } from '../upload/upload.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [UploadModule],
+  imports: [UploadModule, AuthModule],
   controllers: [FeedController],
   providers: [
     FeedRepository,

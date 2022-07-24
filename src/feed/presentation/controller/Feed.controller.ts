@@ -8,8 +8,8 @@ import {
   Post,
   Put,
   Query,
-  UploadedFile,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { CreateFeedDto } from '../dto/CreateFeed.dto';
@@ -20,6 +20,9 @@ import { FeedCommentService } from 'src/feed/application/service/feedComment.ser
 import { CreateFeedCommentDto } from '../dto/CreateFeedComment.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { UploadService } from 'src/upload/Upload.service';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { JwtService } from '@nestjs/jwt';
+import { User } from 'src/auth/user.decorator';
 
 @Controller('/feed')
 export class FeedController {
@@ -27,7 +30,21 @@ export class FeedController {
     private readonly service: FeedService,
     private readonly commentService: FeedCommentService,
     private readonly uploadService: UploadService,
+    private readonly jwtService: JwtService,
   ) {}
+
+  @Get('/sign')
+  authSign() {
+    const userId = 'abcd';
+    const result = this.jwtService.sign({ userId });
+    console.log(result);
+  }
+  @UseGuards(AuthGuard)
+  @Get('/hello')
+  test(@User() userId: number) {
+    console.log(userId);
+    return 'hello';
+  }
 
   @Post('/report')
   createFeedReport(@Body() input: CreateFeedReportDto) {
